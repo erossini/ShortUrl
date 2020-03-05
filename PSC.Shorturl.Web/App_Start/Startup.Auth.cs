@@ -24,13 +24,13 @@ namespace PSC.Shorturl.Web
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             app.UseMicrosoftAccountAuthentication(
-             clientId: "000000004C179CE5",
-             clientSecret: "ptEJ6IRtmyoqMgLUvTYQWyn8rJ7gUC2V");
+             clientId: "",
+             clientSecret: "");
 
             app.UseTwitterAuthentication(new TwitterAuthenticationOptions
             {
-                ConsumerKey = "WqkPiLaDaZIrpO7fZj4TNPEfh",
-                ConsumerSecret = "nyJfBMzi70tmcCERk9hQpQjV9PHqKDVOxITXnYMWMFubQDeByM",
+                ConsumerKey = "",
+                ConsumerSecret = "",
                 BackchannelCertificateValidator = new CertificateSubjectKeyIdentifierValidator(new[]
                     {
                         // VeriSign Class 3 Secure Server CA - G2
@@ -53,11 +53,11 @@ namespace PSC.Shorturl.Web
             });
 
             app.UseFacebookAuthentication(
-             appId: "220312764968956",
-             appSecret: "9f1051ccda792f6266612f70f9eb8cee");
+             appId: "",
+             appSecret: "");
 
-            app.UseGoogleAuthentication(clientId: "346925793832-fomgjpci6vrukukfekgma1f16ri2l2e2.apps.googleusercontent.com",
-                                        clientSecret: "s5lUbiRMzYAkUvEsMySUqtHL");
+            app.UseGoogleAuthentication(clientId: "",
+                                        clientSecret: "");
         }
     }
 }
