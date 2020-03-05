@@ -1,0 +1,423 @@
+﻿@using PSC.Chartjs.Mvc.Extensions
+@using PSC.Chartjs.Mvc.ComplexChart
+@using PSC.Shorturl.Web.Models
+@model PSC.Shorturl.Web.Utility.Models.StatUrl
+
+@{
+    ViewBag.Title = "Stats";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/chartjs/Chart.js"></script>
+
+<link href="~/Content/themes/base/base.css" rel="stylesheet" />
+<link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
+<link href="~/Content/themes/base/theme.css" rel="stylesheet" />
+
+<link href="~/Scripts/map/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
+
+<h2>Stats</h2>
+
+@if (Model.Success)
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Segment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Visit)
+            </th>
+        </tr>
+
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.Segment)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.CreatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Visit)
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="3">
+                @Html.DisplayNameFor(model => model.FullUrl)
+                <a href="@Html.DisplayFor(model => model.FullUrl)" target="_blank">
+                    @Html.DisplayFor(model => model.FullUrl)
+                </a>
+            </td>
+        </tr>
+    </table>
+
+    <label for="from">From</label>
+    <input type="text" id="from" name="from" value="@DateTime.Now.AddDays(-7).ToString("dd/MM/yyyy")">
+    <label for="to">to</label>
+    <input type="text" id="to" name="to" value="@DateTime.Now.ToString("dd/MM/yyyy")">
+    <input type="button" id="btnGenerate" value="Apply">
+
+    <div style="margin-top: 15px; width: 100%;">&nbsp;</div>
+    <div id="divWait" style="display: none;">
+        <p id="pwait">Loading graph in progress...</p>
+    </div>
+
+    <div style="width: 95%;">
+        <h3>Visits over time</h3>
+        <canvas id="myChart" width="600" height="200"></canvas>
+    </div>
+
+    <div style="margin-top: 15px; width: 100%;">&nbsp;</div>
+
+    <div id="divMap" style="width: 95%;">
+        <h3>Visitor map</h3>
+        <div id="divMapNoData" style="display: none;">
+            <p>No data for this graph.</p>
+        </div>
+        <div id="world-map" style="width: 100%; height: 300px"></div>
+    </div>
+
+    <div style="margin-top: 15px; width: 100%;">&nbsp;</div>
+
+    <div class="row">
+        <div class="col-lg-3">
+            <h3>Browser</h3>
+            <div id="divWaitBrowser" style="display: none;">
+                <p id="pwaitBrowser">Loading browser graph in progress...</p>
+            </div>
+            <canvas id="myChartBrowser" width="250" height="200"></canvas>
+        </div>
+        <div class="col-lg-3">
+            <h3>Device</h3>
+            <div id="divWaitDevice" style="display: none;">
+                <p id="pwaitDevice">Loading device graph in progress...</p>
+            </div>
+            <canvas id="myChartDevice" width="250" height="200"></canvas>
+        </div>
+        <div class="col-lg-3">
+            <h3>Platform</h3>
+            <div id="divWaitPlatform" style="display: none;">
+                <p id="pwaitPlatform">Loading platform graph in progress...</p>
+            </div>
+            <canvas id="myChartPlatform" width="250" height="200"></canvas>
+        </div>
+    </div>
+
+    <div style="margin-top: 15px; width: 100%;">&nbsp;</div>
+
+    <div id="divReferrer" style="width: 95%;">
+        <h3>Referrer</h3>
+        <div id="divWaitReferrer" style="display: none;">
+            <p id="pwaitReferrer">Loading referrer list in progress...</p>
+        </div>
+        <div id="tblReferrer"></div>
+    </div>
+
+    <div id="divExport" style="width: 95%;">
+        <h3>Export</h3>
+        <a href="#" id="lnkExportPDF">Export complete statistics</a>
+    </div>
+}
+else
+{
+    <p>Segment non found</p>
+}
+
+@section scripts
+{
+    <script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
+
+    <script src="~/Scripts/map/jquery-jvectormap-2.0.3.min.js"></script>
+    <script src="~/Scripts/map/assets/jquery-jvectormap-world-mill-en.js"></script>
+
+    <script>
+        <!--
+        var pathjs = window.location.protocol + "//" + window.location.host + "//";
+
+        function GetData() {
+            $("#divWait").show();
+            $("#divWaitBrowser").show();
+            $("#divWaitDevice").show();
+            $("#divWaitPlatform").show();
+            $("#divWaitReferrer").show();
+
+            var gData = [];
+            gData[0] = "@Model.Segment";
+            gData[1] = $("#from").val().replace('/', '-').replace('/', '-');
+            gData[2] = $("#to").val().replace('/', '-').replace('/', '-');
+
+            var jsonData = JSON.stringify({
+                gData: gData
+            });
+
+            $.ajax({
+                type: "POST",
+                url: pathjs + "api/url/Stats?segment=" + gData[0] + "&start=" + gData[1] + "&end=" + gData[2],
+                data: jsonData,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccess_,
+                error: OnErrorCall_
+            });
+
+            $.ajax({
+                type: "POST",
+                url: pathjs + "api/url/StatsBrowser?segment=" + gData[0] + "&start=" + gData[1] + "&end=" + gData[2],
+                data: jsonData,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccessBrowser_,
+                error: OnErrorCallBrowser_
+            });
+
+            $.ajax({
+                type: "POST",
+                url: pathjs + "api/url/StatsPlatform?segment=" + gData[0] + "&start=" + gData[1] + "&end=" + gData[2],
+                data: jsonData,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccessPlatform_,
+                error: OnErrorCallPlatform_
+            });
+
+            $.ajax({
+                type: "POST",
+                url: pathjs + "api/url/StatsReferrer?segment=" + gData[0] + "&start=" + gData[1] + "&end=" + gData[2],
+                data: jsonData,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccessReferrer_,
+                error: OnErrorCallReferrer_
+            });
+
+            $.ajax({
+                type: "POST",
+                url: pathjs + "api/url/StatsDevice?segment=" + gData[0] + "&start=" + gData[1] + "&end=" + gData[2],
+                data: jsonData,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccessDevice_,
+                error: OnErrorCallDevice_
+            });
+
+            $.ajax({
+                type: "POST",
+                url: pathjs + "api/url/StatsMap?segment=" + gData[0] + "&start=" + gData[1] + "&end=" + gData[2],
+                data: jsonData,
+                contentType: "application/x-javascript;",
+                dataType: "script",
+                success: OnSuccessMap_,
+                error: OnErrorCallMap_
+            });
+
+            function OnSuccess_(response) {
+                var aData = response;
+                var aLabels = aData[0];
+                var aDatasets1 = aData[1];
+
+                var data = {
+                    labels: aLabels,
+                    datasets: [{
+                        label: "Stat dataset",
+                        fillColor: "rgba(151,187,205,0.2)",
+                        strokeColor: "rgba(151,187,205,1)",
+                        pointColor: "rgba(151,187,205,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(151,187,205,1)",
+                        data: aDatasets1
+                    }]
+                };
+
+                var ctx = $("#myChart").get(0).getContext('2d');
+                var lineChart = new Chart(ctx).Line(data, {
+                    bezierCurve: false, responsive: true,
+                });
+
+                $("#divWait").hide();
+            }
+
+            function OnSuccessBrowser_(response) {
+                var aData = response;
+                var aLabels = aData[0];
+                var aDatasets1 = aData[1];
+
+                var arr = [];
+                $.each(aData, function (inx, val) {
+                    var obj = {};
+                    obj.color = val.color;
+                    obj.value = val.value;
+                    obj.label = val.label;
+                    arr.push(obj);
+                });
+
+                var ctx = $("#myChartBrowser").get(0).getContext('2d');
+                var myPieChart = new Chart(ctx).Pie(arr, {
+                    legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+                });
+
+                $("#divWaitBrowser").hide();
+            }
+
+            function OnSuccessDevice_(response) {
+                var aData = response;
+                var aLabels = aData[0];
+                var aDatasets1 = aData[1];
+
+                var arr = [];
+                $.each(aData, function (inx, val) {
+                    var obj = {};
+                    obj.color = val.color;
+                    obj.value = val.value;
+                    obj.label = val.label;
+                    arr.push(obj);
+                });
+
+                var ctx = $("#myChartDevice").get(0).getContext('2d');
+                var myPieChart = new Chart(ctx).Pie(arr, {
+                    legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+                });
+
+                $("#divWaitDevice").hide();
+            }
+
+            function OnSuccessMap_(response) {
+                var aData = response.replace(/["]+/g, '');
+
+                if (aData.length == 0)
+                {
+                    $("#divMapNoData").show();
+                }
+                else
+                {
+                    $("#divMapNoData").hide();
+                    eval(aData);
+
+                    $('#world-map').vectorMap({
+                        map: 'world_mill_en',
+                        series: {
+                            regions: [{
+                                values: gdpData,
+                                scale: ['#C8EEFF', '#0071A4'],
+                                normalizeFunction: 'polynomial'
+                            }]
+                        },
+                        onRegionTipShow: function (e, el, code) {
+                            el.html(el.html() + ' (' + gdpData[code] + ')');
+                        }
+                    });
+                }
+            }
+
+            function OnSuccessReferrer_(response) {
+                var aData = response;
+                var aLabels = aData[0];
+                var aDatasets1 = aData[1];
+
+                var count = 0;
+                var referrer = "<table id='referrer'><thead><th>Referrer</th><th>Count</th></thead><tbody>";
+                $.each(aData, function (inx, val) {
+                    referrer += "<tr><td>" + val.key + "</td><td style='text-align: right;'>" + val.cnt + "</td></tr>";
+                    count += 1;
+                });
+                if (count == 0)
+                {
+                    referrer += "<tr><td colspan=2>No referrer</td></tr>"
+                }
+                referrer += "</tbody></table>";
+                $("#tblReferrer").html(referrer);
+
+                $("#divWaitReferrer").hide();
+            }
+
+            function OnSuccessPlatform_(response) {
+                var aData = response;
+                var aLabels = aData[0];
+                var aDatasets1 = aData[1];
+
+                var arr = [];
+                $.each(aData, function (inx, val) {
+                    var obj = {};
+                    obj.color = val.color;
+                    obj.value = val.value;
+                    obj.label = val.label;
+                    arr.push(obj);
+                });
+
+                var ctx = $("#myChartPlatform").get(0).getContext('2d');
+                var myPieChart = new Chart(ctx).Pie(arr, {
+                    legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+                });
+
+                $("#divWaitPlatform").hide();
+            }
+        }
+
+        function OnErrorCall_(response) {
+            $("#pwait").text("Error loading graph. Try again");
+        }
+
+        function OnErrorCallBrowser_(response) {
+            $("#pwaitBrowser").text("Error loading graph. Try again");
+        }
+
+        function OnErrorCallDevice_(response) {
+            $("#pwaitDevice").text("Error loading graph. Try again");
+        }
+
+        function OnErrorCallMap_(response) {
+            $("#divMapNoData").show();
+        }
+
+        function OnErrorCallPlatform_(response) {
+            $("#pwaitPlatform").text("Error loading graph. Try again");
+        }
+
+        function OnErrorCallReferrer_(response) {
+            $("#pwaitReferrer").text("Error loading list of referrer. Try again");
+        }
+
+        // call api the first time
+        GetData();
+
+        $(function () {
+            /* regenerate stats */
+            $("#btnGenerate").click(function (e) {
+                GetData();
+                e.preventDefault();
+            });
+
+            /* jquery calendar settings */
+            $("#from").datepicker({
+                dateFormat: 'dd/mm/yy',
+                defaultDate: "+1w",
+                changeMonth: true,
+                numberOfMonths: 2,
+                onClose: function (selectedDate) {
+                    $("#to").datepicker("option", "minDate", selectedDate);
+                }
+            });
+
+            $("#to").datepicker({
+                dateFormat: 'dd/mm/yy',
+                defaultDate: "+1w",
+                changeMonth: true,
+                numberOfMonths: 2,
+                onClose: function (selectedDate) {
+                    $("#from").datepicker("option", "maxDate", selectedDate);
+                }
+            });
+
+            $('#lnkExportPDF').click(function (e) {
+                e.preventDefault();
+                window.location = '/Url/Print?ReportType=PDF&segment=@Model.Segment&start=' + $("#from").val().replace('/', '-').replace('/', '-') +
+                                  '&end=' + $("#to").val().replace('/', '-').replace('/', '-');
+            });
+        });
+        //-->
+    </script>
+}

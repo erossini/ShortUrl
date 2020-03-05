@@ -1,0 +1,223 @@
+﻿.globalnav {
+    position: fixed;
+    height: 21px;
+    background-color: #e4e5e5;
+    top: 0;
+    width: 100%;
+    z-index: 10000;
+    display: block;
+    border-bottom: 1px solid #b2b2b2;
+}
+
+@media (max-width: 980px) {
+    .globalnav {
+        display: none;
+    }
+}
+
+.globalnav-sub {
+    height: 22px;
+}
+
+#drop-nav {
+    width: 960px;
+    margin: 0px auto;
+    padding-left: 0px;
+}
+
+.dropdown-sub .right span {
+    color: #808080;
+    font-size: 16px;
+}
+
+.dropdown-sub .right a:hover span {
+    color: #ffffff;
+}
+
+.dropdown-sub a {
+    color: #ffffff !important;
+    display: block;
+    padding-bottom: 15px !important;
+    padding-top: 0px !important;
+    margin-top: 5px;
+    font-size: 16px;
+    line-height: 16px;
+    text-decoration: none;
+}
+
+.dropdown-sub .left {
+    width: 40%;
+    margin-right: 30px;
+}
+
+.dropdown-sub .right {
+    border-left: 1px solid #b2b2b2;
+    padding-left: 20px;
+    text-align: left;
+    margin-top: 15px;
+}
+
+.dropdown-sub p {
+    font-size: 16px;
+    line-height: 1.3em !important;
+}
+
+.dropdown-sub .mainheading {
+    color: #ffffff;
+    font-size: 30px !important;
+}
+
+.dropdown-sub div {
+    float: left;
+    color: #ffffff !important;
+}
+
+.globalnav-sub {
+    width: 100%;
+    font-size: 12px;
+    position: absolute;
+}
+
+#drop-nav li ul li {
+    border-top: 0px;
+}
+
+#drop-nav ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+#drop-nav li {
+    display: block;
+    float: left;
+    padding-left: 0px;
+}
+
+    #drop-nav li div.dropdown-main {
+        width: 100%;
+        position: absolute;
+        left: 0;
+        display: none;
+        background-color: #4f86a5;
+        padding-top: 15px;
+        box-shadow: 0px 2px 0px rgba(0,0,0,0.2);
+    }
+
+.dropdown-sub {
+    width: 960px;
+    margin: auto;
+    display: block;
+    height: 148px;
+}
+
+#drop-nav ul li a {
+    display: block;
+    background: #000;
+    padding: 10px;
+    text-decoration: none;
+    white-space: nowrap;
+    color: #fff !important;
+}
+
+#drop-nav li:first-child {
+    background: url(http://psc.fyi/Scripts/nav/images/nav-bg-line.png) left 50% no-repeat !important;
+}
+
+.righttext {
+    float: right !important;
+    border: none !important;
+}
+
+    .righttext img {
+        float: left;
+        padding-top: 4px;
+        padding-left: 5px;
+    }
+
+    .righttext .locationname {
+        float: left;
+        padding-top: 3px;
+        padding-left: 5px;
+    }
+
+#drop-nav li a {
+    padding-bottom: 5px;
+    padding-top: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    line-height: 1;
+    display: inline-block;
+    color: #6e6f72;
+    text-decoration: none;
+    background: url(http://psc.fyi/Scripts/nav/images/nav-bg-line.png) right 50% no-repeat !important;
+}
+
+#drop-nav li .right a {
+    background: none !important;
+}
+
+.dropdown-sub .right a {
+    display: block !important;
+}
+
+#drop-nav li:first-child {
+}
+
+#drop-nav li {
+}
+
+#drop-nav ul li a:hover {
+    background: none;
+    background-color: #808080;
+    color: #ffffff;
+}
+
+#drop-nav div.dropdown-main a {
+    background-color: transparent !important;
+}
+
+    #drop-nav div.dropdown-main a:hover {
+        background: none;
+        background-color: transparent !important;
+        color: #ffffff !important;
+    }
+
+#drop-nav li:hover div.dropdown-main {
+    float: none;
+}
+
+#drop-nav li a:active {
+    background-color: #6d5faa !important;
+    text-decoration: none;
+}
+
+#drop-nav li.selected a {
+    color: #ffffff !important;
+}
+
+#drop-nav li.selected, #drop-nav li.selected .right a {
+    background: none !important;
+}
+
+    #drop-nav li.selected, #drop-nav li.selected a {
+        text-decoration: none;
+    }
+
+#drop-nav li:hover .right a {
+    background: none !important;
+}
+
+#drop-nav li.selected:hover a {
+}
+
+#drop-nav li:hover a {
+    background: #808080 url() right 50% no-repeat !important;
+    background-color: #808080 !important;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+#drop-nav li:hover div a:hover {
+    background: #000;
+}

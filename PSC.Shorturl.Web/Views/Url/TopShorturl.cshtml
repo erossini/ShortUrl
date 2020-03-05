@@ -1,0 +1,16 @@
+﻿@model IEnumerable<PSC.Shorturl.Web.Models.Url>
+
+<table class="table">
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a href="http://psc.fyi/@item.ShortURL">@Html.DisplayFor(modelItem => item.ShortURL)</a>
+                <a href='https://www.facebook.com/sharer/sharer.php?u=http://psc.fyi/@item.ShortURL @item.Description' target='_blank'><img border='0' alt='Share on Facebook' src="~/Content/social/facebook.png" /></a><a href="https://twitter.com/home?status=http://psc.fyi/@item.ShortURL @item.Description" target="_blank"><img border="0" alt="Share on Twitter" src="~/Content/social/twitter.png" /></a><a href="https://plus.google.com/share?url=http://psc.fyi/@item.ShortURL" target="_blank"><img border="0" alt="Share on Google+" src="~/Content/social/googleplus.png" /></a><a href="https://www.linkedin.com/shareArticle?mini=true&url=@item.ShortURL&title=@item.Description&summary=&source=http://psc.fyi PureSourceCode" target="_blank"><img border="0" alt="Share on LinkedIn" src="~/Content/social/linkedin.png" /></a>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+        </tr>
+    }
+
+</table>

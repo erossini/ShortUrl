@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PSC.ShortUrl.Web.IPToCountry.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="APIUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://api.db-ip.com/addrinfo?addr={0}&amp;api_key=f3d0b52c41a60a2c1c0f974353039b5b16aeefdb</Value>
+    </Setting>
+    <Setting Name="APIKey" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">f3d0b52c41a60a2c1c0f974353039b5b16aeefdb</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

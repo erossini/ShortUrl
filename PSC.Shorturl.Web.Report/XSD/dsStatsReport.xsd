@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsStatsReport" targetNamespace="http://tempuri.org/dsStatsReport.xsd" xmlns:mstns="http://tempuri.org/dsStatsReport.xsd" xmlns="http://tempuri.org/dsStatsReport.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsStatsReport" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsStatsReport" msprop:Generator_UserDSName="dsStatsReport">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Stats" msprop:Generator_TableClassName="StatsDataTable" msprop:Generator_TableVarName="tableStats" msprop:Generator_RowChangedName="StatsRowChanged" msprop:Generator_TablePropName="Stats" msprop:Generator_RowDeletingName="StatsRowDeleting" msprop:Generator_RowChangingName="StatsRowChanging" msprop:Generator_RowEvHandlerName="StatsRowChangeEventHandler" msprop:Generator_RowDeletedName="StatsRowDeleted" msprop:Generator_RowClassName="StatsRow" msprop:Generator_UserTableName="Stats" msprop:Generator_RowEvArgName="StatsRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="StatDate" msprop:Generator_ColumnVarNameInTable="columnStatDate" msprop:Generator_ColumnPropNameInRow="StatDate" msprop:Generator_ColumnPropNameInTable="StatDateColumn" msprop:Generator_UserColumnName="StatDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="StatCount" msprop:Generator_ColumnVarNameInTable="columnStatCount" msprop:Generator_ColumnPropNameInRow="StatCount" msprop:Generator_ColumnPropNameInTable="StatCountColumn" msprop:Generator_UserColumnName="StatCount" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="StatsPlatform" msprop:Generator_TableClassName="StatsPlatformDataTable" msprop:Generator_TableVarName="tableStatsPlatform" msprop:Generator_RowChangedName="StatsPlatformRowChanged" msprop:Generator_TablePropName="StatsPlatform" msprop:Generator_RowDeletingName="StatsPlatformRowDeleting" msprop:Generator_RowChangingName="StatsPlatformRowChanging" msprop:Generator_RowEvHandlerName="StatsPlatformRowChangeEventHandler" msprop:Generator_RowDeletedName="StatsPlatformRowDeleted" msprop:Generator_RowClassName="StatsPlatformRow" msprop:Generator_UserTableName="StatsPlatform" msprop:Generator_RowEvArgName="StatsPlatformRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PlatformName" msprop:Generator_ColumnVarNameInTable="columnPlatformName" msprop:Generator_ColumnPropNameInRow="PlatformName" msprop:Generator_ColumnPropNameInTable="PlatformNameColumn" msprop:Generator_UserColumnName="PlatformName" type="xs:string" minOccurs="0" />
+              <xs:element name="PlatformCount" msprop:Generator_ColumnVarNameInTable="columnPlatformCount" msprop:Generator_ColumnPropNameInRow="PlatformCount" msprop:Generator_ColumnPropNameInTable="PlatformCountColumn" msprop:Generator_UserColumnName="PlatformCount" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="StatsCountry" msprop:Generator_TableClassName="StatsCountryDataTable" msprop:Generator_TableVarName="tableStatsCountry" msprop:Generator_RowChangedName="StatsCountryRowChanged" msprop:Generator_TablePropName="StatsCountry" msprop:Generator_RowDeletingName="StatsCountryRowDeleting" msprop:Generator_RowChangingName="StatsCountryRowChanging" msprop:Generator_RowEvHandlerName="StatsCountryRowChangeEventHandler" msprop:Generator_RowDeletedName="StatsCountryRowDeleted" msprop:Generator_RowClassName="StatsCountryRow" msprop:Generator_UserTableName="StatsCountry" msprop:Generator_RowEvArgName="StatsCountryRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CountryName" msprop:Generator_ColumnVarNameInTable="columnCountryName" msprop:Generator_ColumnPropNameInRow="CountryName" msprop:Generator_ColumnPropNameInTable="CountryNameColumn" msprop:Generator_UserColumnName="CountryName" type="xs:string" minOccurs="0" />
+              <xs:element name="CountryCount" msprop:Generator_ColumnVarNameInTable="columnCountryCount" msprop:Generator_ColumnPropNameInRow="CountryCount" msprop:Generator_ColumnPropNameInTable="CountryCountColumn" msprop:Generator_UserColumnName="CountryCount" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="StatsInfo" msprop:Generator_TableClassName="StatsInfoDataTable" msprop:Generator_TableVarName="tableStatsInfo" msprop:Generator_RowChangedName="StatsInfoRowChanged" msprop:Generator_TablePropName="StatsInfo" msprop:Generator_RowDeletingName="StatsInfoRowDeleting" msprop:Generator_RowChangingName="StatsInfoRowChanging" msprop:Generator_RowEvHandlerName="StatsInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="StatsInfoRowDeleted" msprop:Generator_RowClassName="StatsInfoRow" msprop:Generator_UserTableName="StatsInfo" msprop:Generator_RowEvArgName="StatsInfoRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Segment" msprop:Generator_ColumnVarNameInTable="columnSegment" msprop:Generator_ColumnPropNameInRow="Segment" msprop:Generator_ColumnPropNameInTable="SegmentColumn" msprop:Generator_UserColumnName="Segment" type="xs:string" minOccurs="0" />
+              <xs:element name="FullUrl" msprop:Generator_ColumnVarNameInTable="columnFullUrl" msprop:Generator_ColumnPropNameInRow="FullUrl" msprop:Generator_ColumnPropNameInTable="FullUrlColumn" msprop:Generator_UserColumnName="FullUrl" type="xs:string" minOccurs="0" />
+              <xs:element name="CreateAt" msprop:Generator_ColumnVarNameInTable="columnCreateAt" msprop:Generator_ColumnPropNameInRow="CreateAt" msprop:Generator_ColumnPropNameInTable="CreateAtColumn" msprop:Generator_UserColumnName="CreateAt" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Visits" msprop:Generator_ColumnVarNameInTable="columnVisits" msprop:Generator_ColumnPropNameInRow="Visits" msprop:Generator_ColumnPropNameInTable="VisitsColumn" msprop:Generator_UserColumnName="Visits" type="xs:int" minOccurs="0" />
+              <xs:element name="FromDate" msprop:Generator_ColumnVarNameInTable="columnFromDate" msprop:Generator_ColumnPropNameInRow="FromDate" msprop:Generator_ColumnPropNameInTable="FromDateColumn" msprop:Generator_UserColumnName="FromDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ToDate" msprop:Generator_ColumnVarNameInTable="columnToDate" msprop:Generator_ColumnPropNameInRow="ToDate" msprop:Generator_ColumnPropNameInTable="ToDateColumn" msprop:Generator_UserColumnName="ToDate" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="StatsBrowser" msprop:Generator_TableClassName="StatsBrowserDataTable" msprop:Generator_TableVarName="tableStatsBrowser" msprop:Generator_TablePropName="StatsBrowser" msprop:Generator_RowDeletingName="StatsBrowserRowDeleting" msprop:Generator_RowChangingName="StatsBrowserRowChanging" msprop:Generator_RowEvHandlerName="StatsBrowserRowChangeEventHandler" msprop:Generator_RowDeletedName="StatsBrowserRowDeleted" msprop:Generator_UserTableName="StatsBrowser" msprop:Generator_RowChangedName="StatsBrowserRowChanged" msprop:Generator_RowEvArgName="StatsBrowserRowChangeEvent" msprop:Generator_RowClassName="StatsBrowserRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="BrowserName" msprop:Generator_ColumnVarNameInTable="columnBrowserName" msprop:Generator_ColumnPropNameInRow="BrowserName" msprop:Generator_ColumnPropNameInTable="BrowserNameColumn" msprop:Generator_UserColumnName="BrowserName" type="xs:string" minOccurs="0" />
+              <xs:element name="BrowserCount" msprop:Generator_ColumnVarNameInTable="columnBrowserCount" msprop:Generator_ColumnPropNameInRow="BrowserCount" msprop:Generator_ColumnPropNameInTable="BrowserCountColumn" msprop:Generator_UserColumnName="BrowserCount" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="StatsDevice" msprop:Generator_TableClassName="StatsDeviceDataTable" msprop:Generator_TableVarName="tableStatsDevice" msprop:Generator_RowChangedName="StatsDeviceRowChanged" msprop:Generator_TablePropName="StatsDevice" msprop:Generator_RowDeletingName="StatsDeviceRowDeleting" msprop:Generator_RowChangingName="StatsDeviceRowChanging" msprop:Generator_RowEvHandlerName="StatsDeviceRowChangeEventHandler" msprop:Generator_RowDeletedName="StatsDeviceRowDeleted" msprop:Generator_RowClassName="StatsDeviceRow" msprop:Generator_UserTableName="StatsDevice" msprop:Generator_RowEvArgName="StatsDeviceRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DeviceName" msprop:Generator_ColumnVarNameInTable="columnDeviceName" msprop:Generator_ColumnPropNameInRow="DeviceName" msprop:Generator_ColumnPropNameInTable="DeviceNameColumn" msprop:Generator_UserColumnName="DeviceName" type="xs:string" minOccurs="0" />
+              <xs:element name="DeviceCount" msprop:Generator_ColumnVarNameInTable="columnDeviceCount" msprop:Generator_ColumnPropNameInRow="DeviceCount" msprop:Generator_ColumnPropNameInTable="DeviceCountColumn" msprop:Generator_UserColumnName="DeviceCount" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="StatsReferrer" msprop:Generator_TableClassName="StatsReferrerDataTable" msprop:Generator_TableVarName="tableStatsReferrer" msprop:Generator_TablePropName="StatsReferrer" msprop:Generator_RowDeletingName="StatsReferrerRowDeleting" msprop:Generator_RowChangingName="StatsReferrerRowChanging" msprop:Generator_RowEvHandlerName="StatsReferrerRowChangeEventHandler" msprop:Generator_RowDeletedName="StatsReferrerRowDeleted" msprop:Generator_UserTableName="StatsReferrer" msprop:Generator_RowChangedName="StatsReferrerRowChanged" msprop:Generator_RowEvArgName="StatsReferrerRowChangeEvent" msprop:Generator_RowClassName="StatsReferrerRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Referrer" msprop:Generator_ColumnVarNameInTable="columnReferrer" msprop:Generator_ColumnPropNameInRow="Referrer" msprop:Generator_ColumnPropNameInTable="ReferrerColumn" msprop:Generator_UserColumnName="Referrer" type="xs:string" minOccurs="0" />
+              <xs:element name="ReferrerCount" msprop:Generator_ColumnVarNameInTable="columnReferrerCount" msprop:Generator_ColumnPropNameInRow="ReferrerCount" msprop:Generator_ColumnPropNameInTable="ReferrerCountColumn" msprop:Generator_UserColumnName="ReferrerCount" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

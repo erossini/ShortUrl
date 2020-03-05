@@ -1,0 +1,79 @@
+﻿@model PagedList.IPagedList<PSC.Shorturl.Web.Entities.ShortUrl>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Your short list</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Index")
+</p>
+
+@using (Html.BeginForm("View", "Url", FormMethod.Get))
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Segment", "View", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            @Html.ActionLink("Added", "View", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            Clicks
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="5">
+                No record for this user.
+            </td>
+        </tr>
+    }
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Segment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Added)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumOfClicks)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { segment = item.Segment }) |
+                @Html.ActionLink("Stats", "Stats", new { segment = item.Segment }) |
+                @Html.ActionLink("Delete", "Delete", new { segment = item.Segment })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br />
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("View",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
