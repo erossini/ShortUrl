@@ -10,6 +10,8 @@ In this solution, I use several techniques and tools. I use Microsoft Visual Stu
 - **Unity**: Unity is a dependency injection framework. You can read more on dependency injection and inversion of control later in this tutorial.
 - **Microsoft Report**: creates reports of our stats
 
+If you visit [PureSourceCode.com](https://puresourcecode.com/dotnet/post/2016/01/28/Creating-a-URL-shortener-using-ASPNET-WepAPI-and-MVC), you have the full description of the code step by step.
+
 ## Home page
 This is what the public home page looks like. From here, you can create a new short url to share. What this solution is offering is:
 
